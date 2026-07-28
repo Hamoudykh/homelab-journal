@@ -33,6 +33,7 @@ Full inventory: [docs/hardware-inventory.md](docs/hardware-inventory.md)
 Dated entries covering what was built, what broke, and what it taught.
 
 - [2026-07-27 — Out-of-band management and Proxmox install](journal/2026-07-27-out-of-band-management.md)
+- [2026-07-28 — Diagnosing a link stuck at 10 Mbps](journal/2026-07-28-ten-megabit-link.md)
 
 ## Roadmap
 
