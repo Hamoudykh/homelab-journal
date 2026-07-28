@@ -112,6 +112,72 @@ throughput (including the `vmbr0` bridge and each VM's virtual interface), and u
 | Prometheus | `http://192.168.1.12:9090` |
 | node_exporter | `http://192.168.1.6:9100/metrics` |
 
+## Network probing with blackbox_exporter
+
+`node_exporter` only reports on machines that run it. To monitor *everything* on the network
+— including a router that will never run an agent — the tool is **blackbox_exporter**, which
+probes devices from the outside (ICMP, TCP, HTTP) and reports whether they answered and how
+long it took.
+
+Installed on **pve01**, not mon01. That was originally a mistake, but it is the better
+location: ICMP needs raw sockets, which are restricted inside an unprivileged container and
+unrestricted on the host.
+
+Prometheus scrape job — note this one is not a plain target list. Prometheus asks
+blackbox_exporter to probe *something else*, so the target has to be rewritten into a query
+parameter:
+
+```yaml
+  - job_name: ping
+    metrics_path: /probe
+    params:
+      module: [icmp]
+    static_configs:
+      - targets:
+          - 192.168.1.1
+          - 192.168.1.6
+          - 192.168.1.12
+          - 192.168.1.174
+          - 192.168.1.88
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target      # the device to probe
+      - source_labels: [__param_target]
+        target_label: instance            # label the result with the device
+      - target_label: __address__
+        replacement: pve01.lab.home.arpa:9115   # who to actually ask
+```
+
+Those three relabel rules are the pattern for every blackbox job: move the real target into
+`__param_target`, keep it as the `instance` label so graphs are readable, then point the
+actual scrape at the exporter.
+
+## Dashboard
+
+`dashboards/network-overview.json` in this repo — imported via Grafana's *Import → Upload
+JSON*. Four panels: device up/down tiles, ping latency, availability percentage over 6h, and
+per-interface throughput on pve01.
+
+Keeping the dashboard **in Git** rather than only inside Grafana means it is versioned,
+reviewable, and reproducible on a fresh install.
+
+### Baseline observed
+
+| Device | Mean latency |
+|---|---|
+| 192.168.1.1 (router) | 1.52 ms |
+| 192.168.1.88 (PC) | 0.583 ms |
+| 192.168.1.174 (infra01) | 0.426 ms |
+| 192.168.1.12 (mon01) | 0.215 ms |
+| 192.168.1.6 (pve01) | 0.207 ms |
+
+The router is roughly seven times slower to answer than anything else — consumer gateways
+deprioritise responding to pings. mon01 and infra01 are fast because they are on the same
+physical host as the prober; traffic never leaves the machine.
+
+**The value of a baseline is knowing what normal looks like.** If the router later answers at
+50 ms, that is now obviously wrong. Without a baseline it would just be a number.
+
 ## Open items
 
 - [ ] Add `mon01` to DNS on infra01, and a static lease on the router
