@@ -21,6 +21,7 @@ Intel Core i7-10700 (8C/16T, vPro) · 16 GB DDR4-2933 (2 of 4 slots populated) �
 1 TB Intel 660p NVMe · Intel I219-LM 1 GbE · Q470 chipset · VT-x/VT-d
 
 Full inventory: [docs/hardware-inventory.md](docs/hardware-inventory.md)
+Services, ports and URLs: [docs/services-and-ports.md](docs/services-and-ports.md)
 
 ## Conventions
 
