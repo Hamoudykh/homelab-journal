@@ -10,6 +10,8 @@ management, network design, telemetry, and automation. Built and documented from
 | Hypervisor | Proxmox VE 9.2 on `pve01` (Lenovo ThinkCentre M90t) |
 | Management | Intel AMT 14 out-of-band, plus ATEN CV211CP crash cart as fallback |
 | Network | Flat `192.168.1.0/24`; VLAN segmentation planned |
+| DNS | dnsmasq on `infra01`, authoritative for `lab.home.arpa` |
+| Monitoring | Prometheus + Grafana on `mon01` |
 | Test gear | Pockethernet 2, Oscium Nomad + Hamina Onsite |
 
 ## Hardware
@@ -36,6 +38,7 @@ Dated entries covering what was built, what broke, and what it taught.
 - [2026-07-28 — Diagnosing a link stuck at 10 Mbps](journal/2026-07-28-ten-megabit-link.md)
 - [2026-07-28 — First VM: infra01](journal/2026-07-28-first-vm.md)
 - [2026-07-28 — DNS for lab.home.arpa on infra01](journal/2026-07-28-dns-on-infra01.md)
+- [2026-07-28 — Monitoring: Prometheus and Grafana on mon01](journal/2026-07-28-monitoring-prometheus-grafana.md)
 
 ## Roadmap
 
