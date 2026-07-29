@@ -45,6 +45,7 @@ Dated entries covering what was built, what broke, and what it taught.
 - [2026-07-28 — Alerting with Alertmanager and Telegram](journal/2026-07-28-alerting.md)
 - [2026-07-29 — GPU inference node and GPU telemetry](journal/2026-07-29-gpu-inference-node.md)
 - [2026-07-29 — Building the NetOps agent, and what the models got wrong](journal/2026-07-29-agent-model-comparison.md)
+- [2026-07-29 — Remote access with Tailscale](journal/2026-07-29-remote-access-tailscale.md)
 
 ## Roadmap
 
