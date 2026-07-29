@@ -5,6 +5,10 @@
 secrets/
 *credentials*
 *password*
+*token*
+.env
+.env.*
+alertmanager.yml
 
 # Python
 __pycache__/
