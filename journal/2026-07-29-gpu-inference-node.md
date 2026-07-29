@@ -111,6 +111,28 @@ Both services have shortcuts in the user's Startup folder, so they come back aft
 Not as robust as a Windows service (which would need admin and would run without a login), but
 adequate for a workstation.
 
+## What it looks like once it is graphed
+
+With the dashboard running, a model load is unmistakable in the telemetry. Over one hour:
+
+| | Idle | Peak (14B model loaded + generating) |
+|---|---|---|
+| VRAM | ~2.5 GB | **11.8 GB** |
+| GPU utilisation | ~10% background | **51%** |
+| Power draw | ~19 W | **69 W** |
+| Temperature | 45 °C | 57 °C |
+
+The VRAM trace is the clearest signal: a flat ~2.5 GB baseline, a vertical jump to 11.8 GB
+that holds for the duration of the `KEEP_ALIVE` window, then a vertical drop back. You can
+read the model's entire lifecycle off that one line without any application logging.
+
+That is the whole argument for infrastructure telemetry: **the physical layer tells you what
+the software is doing**, independently of whether the software bothers to say so.
+
+Scaled up, this is the shape of the problem AI data centres exist to solve. One consumer card
+swings 50 W between idle and load. A rack of accelerators swings tens of kilowatts, on the
+same timescale, and every watt becomes heat that has to be removed.
+
 ## Open items
 
 - [ ] Firewall rules (needs an elevated shell at the machine)
