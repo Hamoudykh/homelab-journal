@@ -42,6 +42,7 @@ Dated entries covering what was built, what broke, and what it taught.
 - [2026-07-28 — DNS for lab.home.arpa on infra01](journal/2026-07-28-dns-on-infra01.md)
 - [2026-07-28 — Monitoring: Prometheus and Grafana on mon01](journal/2026-07-28-monitoring-prometheus-grafana.md)
 - [2026-07-28 — Alerting with Alertmanager and Telegram](journal/2026-07-28-alerting.md)
+- [2026-07-29 — GPU inference node and GPU telemetry](journal/2026-07-29-gpu-inference-node.md)
 
 ## Roadmap
 
