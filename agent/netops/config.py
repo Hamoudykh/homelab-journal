@@ -31,7 +31,9 @@ def load() -> Config:
         prometheus_url=os.getenv("PROMETHEUS_URL", "http://192.168.1.12:9090"),
         alertmanager_url=os.getenv("ALERTMANAGER_URL", "http://192.168.1.12:9093"),
         ollama_url=os.getenv("OLLAMA_URL", "http://127.0.0.1:11434"),
-        ollama_model=os.getenv("OLLAMA_MODEL", "llama3.1:8b"),
+        # qwen2.5:14b is ~1.8x slower than llama3.1:8b but measurably more
+        # reliable on this task - see journal/2026-07-29-agent-model-comparison.md
+        ollama_model=os.getenv("OLLAMA_MODEL", "qwen2.5:14b"),
         telegram_token=os.getenv("TELEGRAM_BOT_TOKEN"),
         telegram_chat_id=os.getenv("TELEGRAM_CHAT_ID"),
         request_timeout=int(os.getenv("REQUEST_TIMEOUT", "10")),

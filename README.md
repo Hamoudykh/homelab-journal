@@ -13,6 +13,7 @@ management, network design, telemetry, and automation. Built and documented from
 | DNS | dnsmasq on `infra01`, authoritative for `lab.home.arpa` |
 | Monitoring | Prometheus + Grafana on `mon01`, blackbox probing from `pve01` |
 | Alerting | Alertmanager → Telegram |
+| AI | Ollama on the GPU node (RTX 4070 Ti SUPER); [NetOps agent](agent/) reasoning over live telemetry |
 | Test gear | Pockethernet 2, Oscium Nomad + Hamina Onsite |
 
 ## Hardware
@@ -43,6 +44,7 @@ Dated entries covering what was built, what broke, and what it taught.
 - [2026-07-28 — Monitoring: Prometheus and Grafana on mon01](journal/2026-07-28-monitoring-prometheus-grafana.md)
 - [2026-07-28 — Alerting with Alertmanager and Telegram](journal/2026-07-28-alerting.md)
 - [2026-07-29 — GPU inference node and GPU telemetry](journal/2026-07-29-gpu-inference-node.md)
+- [2026-07-29 — Building the NetOps agent, and what the models got wrong](journal/2026-07-29-agent-model-comparison.md)
 
 ## Roadmap
 
